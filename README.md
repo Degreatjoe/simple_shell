@@ -41,7 +41,7 @@ This is a simple Unix shell written in C Programming Language. It supports basic
 - Enhancing performance through optimizations.
 
 ## Contributors
-- [Manuel Rombe Fungate Jr.](https://github.com/manuelfungas) and [Your Name](https://github.com/manuelfungas)
+- [Manuel Rombe Fungate Jr.](https://github.com/manuelfungas) and [Joseph](https://github.com/Degreatjoe)
 
 ## License
 
