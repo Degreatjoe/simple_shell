@@ -44,7 +44,6 @@ int get_p(char **argv, char **envp)
 		wait(&status);
 		free(args);
 	}
-	/*free(input);*/
 	input = NULL;
 	i = 0;
 	return (0);
