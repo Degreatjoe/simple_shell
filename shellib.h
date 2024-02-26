@@ -1,4 +1,4 @@
-#ifdef SHELLIB_H
+#ifndef SHELLIB_H
 #define SHELLIB_H
 
 #include <stdio.h>
@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <string.h>
 
+int get_p(char **, char **);
 
 
 
