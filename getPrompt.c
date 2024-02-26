@@ -12,6 +12,7 @@ int get_p(char **argv, char **envp)
 	char *input = NULL;
 	pid_t child;
 	int status;
+	char **args;
 
 	while (1)
 	{
@@ -28,18 +29,20 @@ int get_p(char **argv, char **envp)
 			input[k - 1] = '\0';
 		if (k == -1)
 			perror("error");
+		args = str_t(input);
 		child = fork();
 		if (child == -1)
 			perror("error");
 		else if (child == 0)
 		{
-			if (execve(input, argv, envp) == -1)
+			if (execve(args[0], args, envp) == -1)
 			{
 				perror(argv[0]);
 				exit(1);
 			}
 		}
 		wait(&status);
+		free(args);
 	}
 	/*free(input);*/
 	input = NULL;

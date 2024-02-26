@@ -9,6 +9,7 @@
 #include <string.h>
 
 int get_p(char **, char **);
+char **str_t(char *);
 
 
 
