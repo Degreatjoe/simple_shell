@@ -12,6 +12,7 @@ int main(int argc, char **argv)
 	char **token;
 	pid_t child;
 	int status;
+	char *path;
 
 	while (argc == 1)
 	{
@@ -24,23 +25,32 @@ int main(int argc, char **argv)
 				break;
 			}
 			token = tokenize(input);
-			child = fork();
-			if (child == -1)
+			path = find_path(token[0]);
+			if (path)
 			{
-				perror("fork");
-				exit(EXIT_FAILURE);
-			}
-			else if (child == 0)
-			{
-				if (execve(token[0], token, NULL) == -1)
+				child = fork();
+				if (child == -1)
 				{
-					perror(argv[0]);
+					perror("fork");
 					exit(EXIT_FAILURE);
 				}
+				else if (child == 0)
+				{
+					if (execve(path, token, NULL) == -1)
+					{
+						perror(argv[0]);
+						exit(EXIT_FAILURE);
+					}
+				}
+				else
+				{
+					wait(&status);
+				}
+				free(path);
 			}
 			else
 			{
-				wait(&status);
+				perror("path");
 			}
 			free(token);
 		}

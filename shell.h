@@ -12,4 +12,5 @@
 
 char *getInput();
 char **tokenize(char *);
+char *find_path(char *);
 #endif
