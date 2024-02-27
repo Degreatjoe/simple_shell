@@ -12,5 +12,5 @@
 
 char *getInput();
 char **tokenize(char *);
-char *find_path(char *);
+char *find_executable(char *command);
 #endif

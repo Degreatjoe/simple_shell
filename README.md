@@ -17,11 +17,11 @@ This is a simple Unix shell written in C Programming Language. It supports basic
    ```
 2. Compile the code:
    ```
-   <compile_command>
+   gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
    ```
 3. Run the shell:
    ```
-   ./simple_shell
+   ./hsh
    ```
 4. Use the shell as you would a regular Unix shell:
    ```
