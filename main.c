@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 			}
 			else
 			{
-				printf("%s: command not found\n", token[0]);
+				printf("%s: No such file or directory\n", token[0]);
 			}
 			free(token);
 		}
