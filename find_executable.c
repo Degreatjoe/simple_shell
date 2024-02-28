@@ -11,6 +11,18 @@ char *find_executable(char *command)
 	char *path_copy, *dir, *abs_path;
 	struct stat st;
 
+	if (strchr(command, '/') != NULL)
+	{
+		if (stat(command, &st) == 0 && S_ISREG(st.st_mode) &&
+				(st.st_mode & S_IXUSR))
+		{
+			return (strdup(command));
+		}
+		else
+		{
+			return (NULL);
+		}
+	}
 	if (path == NULL || command == NULL)
 		return (NULL);
 
