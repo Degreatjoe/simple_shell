@@ -10,9 +10,6 @@ int main(int argc, char **argv)
 {
 	char *input;
 	char **token;
-	pid_t child;
-	int status;
-	char *executable;
 
 	while (argc == 1)
 	{
@@ -25,34 +22,7 @@ int main(int argc, char **argv)
 				break;
 			}
 			token = tokenize(input);
-			executable = find_executable(token[0]);
-			if (executable != NULL)
-			{
-				child = fork();
-				if (child == -1)
-				{
-					perror("fork");
-					exit(EXIT_FAILURE);
-				}
-				else if (child == 0)
-				{
-					if (execve(executable, token, NULL) == -1)
-					{
-						perror(argv[0]);
-						exit(EXIT_FAILURE);
-					}
-				}
-				else
-				{
-					wait(&status);
-				}
-				free(executable);
-			}
-			else
-			{
-				printf("%s: No such file or directory\n", token[0]);
-			}
-			free(token);
+			execute(token, argv);
 		}
 		free(input);
 	}

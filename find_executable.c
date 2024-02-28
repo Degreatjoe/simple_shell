@@ -8,51 +8,22 @@
 char *find_executable(char *command)
 {
 	char *path = getenv("PATH");
-	char *path_copy, *dir, *abs_path;
-	struct stat st;
+	char *path_copy, *executable;
 
-	if (strchr(command, '/') != NULL)
+	executable = check_command(command);
+	if (executable != NULL)
 	{
-		if (stat(command, &st) == 0 && S_ISREG(st.st_mode) &&
-				(st.st_mode & S_IXUSR))
-		{
-			return (strdup(command));
-		}
-		else
-		{
-			return (NULL);
-		}
+		return (executable);
 	}
 	if (path == NULL || command == NULL)
+	{
 		return (NULL);
-
+	}
 	path_copy = strdup(path);
 	if (path_copy == NULL)
 	{
 		perror("strdup");
 		exit(EXIT_FAILURE);
 	}
-
-	dir = strtok(path_copy, ":");
-	while (dir != NULL)
-	{
-		abs_path = malloc(strlen(dir) + strlen(command) + 2);
-		if (abs_path == NULL)
-		{
-			perror("malloc");
-			exit(EXIT_FAILURE);
-		}
-		sprintf(abs_path, "%s/%s", dir, command);
-		if (stat(abs_path, &st) == 0 && S_ISREG(st.st_mode) &&
-				(st.st_mode & S_IXUSR))
-		{
-			free(path_copy);
-			return (abs_path);
-		}
-		free(abs_path);
-		dir = strtok(NULL, ":");
-	}
-
-	free(path_copy);
-	return (NULL);
+	return (search_path(command, path_copy));
 }
