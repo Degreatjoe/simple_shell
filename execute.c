@@ -3,6 +3,7 @@
  * execute - to execute the command
  * @token: the tokenized input
  * @argv: argument vector
+ * @envp: environ
  */
 void execute(char **token, char **argv, char **envp)
 {

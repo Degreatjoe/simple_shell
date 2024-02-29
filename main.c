@@ -3,6 +3,7 @@
  * main - Entry point for the shell program
  * @argc: Argument count
  * @argv: Argument vector
+ * @envp: environment variable
  *
  * Return: 0 on success, otherwise exit with failure
  */
