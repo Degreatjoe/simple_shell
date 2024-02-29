@@ -12,6 +12,7 @@ void execute(char **token, char **argv, char **envp)
 
 	if (token[0] == NULL)
 	{
+		free_token(token);
 		return;
 	}
 	executable = find_executable(token[0]);
