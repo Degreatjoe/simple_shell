@@ -41,5 +41,5 @@ void execute(char **token, char **argv, char **envp)
 	{
 		perror(argv[0]);
 	}
-	free(token);
+	free_token(token);
 }

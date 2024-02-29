@@ -24,6 +24,7 @@ int main(int argc, char **argv, char **envp)
 			token = tokenize(input);
 			execute(token, argv, envp);
 			free(input);
+			/*free_token(token);*/
 		}
 		else
 		{

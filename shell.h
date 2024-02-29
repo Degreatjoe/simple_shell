@@ -9,7 +9,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-
+void free_token(char **);
 char *getInput();
 char **tokenize(char *);
 char *find_executable(char *command);
