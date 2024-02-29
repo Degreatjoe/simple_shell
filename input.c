@@ -18,8 +18,8 @@ char *getInput(void)
 	if (feof(stdin))
 	{
 		free(input);
-		printf("\n");
-		exit(1);
+		/*printf("\n");*/
+		exit(EXIT_SUCCESS);
 	}
 	if (str_len == -1)
 	{
