@@ -4,7 +4,7 @@
  * @token: the tokenized input
  * @argv: argument vector
  */
-void execute(char **token, char **argv)
+void execute(char **token, char **argv, char **envp)
 {
 	pid_t child;
 	int status;
@@ -25,7 +25,7 @@ void execute(char **token, char **argv)
 		}
 		else if (child == 0)
 		{
-			if (execve(executable, token, NULL) == -1)
+			if (execve(executable, token, envp) == -1)
 			{
 				perror(argv[0]);
 				exit(EXIT_FAILURE);

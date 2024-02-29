@@ -13,7 +13,7 @@
 char *getInput();
 char **tokenize(char *);
 char *find_executable(char *command);
-void execute(char **, char **);
+void execute(char **, char **, char **);
 char *check_command(char *);
 char *search_path(char *command, char *path_copy);
 #endif

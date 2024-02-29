@@ -6,7 +6,7 @@
  *
  * Return: 0 on success, otherwise exit with failure
  */
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **envp)
 {
 	char *input;
 	char **token;
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 				break;
 			}
 			token = tokenize(input);
-			execute(token, argv);
+			execute(token, argv, envp);
 			free(input);
 		}
 		else
