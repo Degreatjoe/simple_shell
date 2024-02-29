@@ -29,7 +29,7 @@ void execute(char **token, char **argv, char **envp)
 			if (execve(executable, token, envp) == -1)
 			{
 				perror(argv[0]);
-				exit(EXIT_FAILURE);
+				exit(2);
 			}
 		}
 		else
