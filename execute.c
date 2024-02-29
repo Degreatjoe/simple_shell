@@ -10,6 +10,10 @@ void execute(char **token, char **argv)
 	int status;
 	char *executable;
 
+	if (token[0] == NULL)
+	{
+		return;
+	}
 	executable = find_executable(token[0]);
 	if (executable != NULL)
 	{
@@ -35,7 +39,7 @@ void execute(char **token, char **argv)
 	}
 	else
 	{
-		printf("%s: No such file or directory\n", token[0]);
+		perror(argv[0]);
 	}
 	free(token);
 }

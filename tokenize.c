@@ -20,7 +20,12 @@ char **tokenize(char *input)
 	tok = strtok(input, " ");
 	while (tok != NULL && i < MAX_INPUT)
 	{
-		token[i] = tok;
+		token[i] = strdup(tok);
+		if (token[i] == NULL)
+		{
+			perror("strdup");
+			exit(EXIT_FAILURE);
+		}
 		i++;
 		tok = strtok(NULL, " ");
 	}

@@ -23,8 +23,13 @@ int main(int argc, char **argv)
 			}
 			token = tokenize(input);
 			execute(token, argv);
+			free(input);
 		}
-		free(input);
+		else
+		{
+			free(input);
+			continue;
+		}
 	}
 	return (0);
 }

@@ -10,7 +10,10 @@ char *getInput(void)
 	size_t i = 0;
 	ssize_t str_len;
 
-	printf("$ ");
+	if (isatty(STDIN_FILENO))
+	{
+		printf("$ ");
+	}
 	str_len = getline(&input, &i, stdin);
 	if (feof(stdin))
 	{
