@@ -40,7 +40,7 @@ void execute(char **token, char **argv, char **envp)
 	}
 	else
 	{
-		perror(argv[0]);
+		fprintf(stderr, "%s: 1: %s: not found\n", argv[0], token[0]);
 	}
 	free_token(token);
 }
