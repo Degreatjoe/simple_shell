@@ -11,7 +11,6 @@ int main(int argc, char **argv, char **envp)
 {
 	char *input;
 	char **token;
-	int child_status;
 
 	while (argc == 1)
 	{
@@ -26,9 +25,8 @@ int main(int argc, char **argv, char **envp)
 			else
 			{
 				token = tokenize(input);
-				child_status = execute(token, argv, envp);
+				execute(token, argv, envp);
 				free(input);
-				return (child_status);
 			}
 			/*free_token(token);*/
 		}
