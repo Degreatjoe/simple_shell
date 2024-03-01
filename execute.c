@@ -6,7 +6,7 @@
  * @envp: environ
  * Return: the exit status of the process or null
  */
-int execute(char **token, char **argv, char **envp)
+void execute(char **token, char **argv, char **envp)
 {
 	pid_t child;
 	int status;
@@ -15,7 +15,7 @@ int execute(char **token, char **argv, char **envp)
 	if (token[0] == NULL)
 	{
 		free_token(token);
-		return (0);
+		return;
 	}
 	executable = find_executable(token[0]);
 	if (executable != NULL)
@@ -37,8 +37,6 @@ int execute(char **token, char **argv, char **envp)
 		else
 		{
 			wait(&status);
-			if (WIFEXITED(status))
-				return (WEXITSTATUS(status));
 		}
 		free(executable);
 	}
@@ -47,5 +45,4 @@ int execute(char **token, char **argv, char **envp)
 		fprintf(stderr, "%s: 1: %s: not found\n", argv[0], token[0]);
 	}
 	free_token(token);
-	return (0);
 }
