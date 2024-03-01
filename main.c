@@ -17,17 +17,12 @@ int main(int argc, char **argv, char **envp)
 		input = getInput();
 		if (input != NULL)
 		{
-			if (strcmp(input, "exit") == 0)
+			token = tokenize(input);
+			if (builtins(token, envp) != 0)
 			{
-				free(input);
-				break;
-			}
-			else
-			{
-				token = tokenize(input);
 				execute(token, argv, envp);
-				free(input);
 			}
+			free(input);
 			/*free_token(token);*/
 		}
 		else
