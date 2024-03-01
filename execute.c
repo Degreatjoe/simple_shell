@@ -5,7 +5,7 @@
  * @argv: argument vector
  * @envp: environ
  */
-void execute(char **token, char **argv, char **envp)
+int execute(char **token, char **argv, char **envp)
 {
 	pid_t child;
 	int status;
@@ -14,7 +14,7 @@ void execute(char **token, char **argv, char **envp)
 	if (token[0] == NULL)
 	{
 		free_token(token);
-		return;
+		return (0);
 	}
 	executable = find_executable(token[0]);
 	if (executable != NULL)
@@ -30,12 +30,16 @@ void execute(char **token, char **argv, char **envp)
 			if (execve(executable, token, envp) == -1)
 			{
 				perror(argv[0]);
-				exit(2);
+				exit(EXIT_FAILURE);
 			}
 		}
 		else
 		{
 			wait(&status);
+			if (WIFEXITED(status))
+			{
+				return (WEXITSTATUS(status));
+			}
 		}
 		free(executable);
 	}
@@ -44,4 +48,5 @@ void execute(char **token, char **argv, char **envp)
 		fprintf(stderr, "%s: 1: %s: not found\n", argv[0], token[0]);
 	}
 	free_token(token);
+	return (WEXITSTATUS(status));
 }
