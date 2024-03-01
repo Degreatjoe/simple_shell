@@ -9,8 +9,7 @@
  */
 int main(int argc, char **argv, char **envp)
 {
-	char *input;
-	char **token;
+	char *input, **token;
 	int execve_return;
 
 	if (!isatty(STDIN_FILENO))

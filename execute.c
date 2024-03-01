@@ -4,6 +4,8 @@
  * @token: the tokenized input
  * @argv: argument vector
  * @envp: environ
+ *
+ * Return: the status of the child process
  */
 int execute(char **token, char **argv, char **envp)
 {
@@ -37,9 +39,7 @@ int execute(char **token, char **argv, char **envp)
 		{
 			wait(&status);
 			if (WIFEXITED(status))
-			{
 				return (WEXITSTATUS(status));
-			}
 		}
 		free(executable);
 	}

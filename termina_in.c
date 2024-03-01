@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * getInput - to recieve input directly from terminal
+ * terminal_input - to recieve input directly from terminal
  *
  * Return: the input on success
  */
@@ -11,8 +11,8 @@ char *terminal_input(void)
 	    ssize_t str_len;
 
 		str_len = getline(&input, &i, stdin);
-	    if (feof(stdin))
-		{	
+		if (feof(stdin))
+		{
 			free(input);
 			/*printf("\n");*/
 			exit(EXIT_SUCCESS);
