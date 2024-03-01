@@ -1,21 +1,5 @@
 #include "shell.h"
 /**
- * handle_cd - to handle the cd builtin command
- * @path: the path to the desired directory
- */
-void handle_cd(char *path)
-{
-	if (path == NULL)
-	{
-		fprintf(stderr, "Usage: cd <directory>\n");
-		return;
-	}
-	if (chdir(path) == -1)
-	{
-		perror("cd");
-	}
-}
-/**
  * handle_pwd - to handle pwd builtin command
  */
 void handle_pwd(void)
